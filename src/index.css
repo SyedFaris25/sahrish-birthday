@@ -1,0 +1,590 @@
+/* ═══════════════════════════════════════════════
+   SAHRISH BANU BIRTHDAY WEBSITE — DESIGN SYSTEM
+   ═══════════════════════════════════════════════ */
+
+/* ── CSS Custom Properties ── */
+:root {
+  --midnight-blue: #07152F;
+  --deep-navy: #0B1F46;
+  --dark-blue: #102C5B;
+  --sky-blue: #55B9E8;
+  --cyan: #8AE4FF;
+  --lavender: #C8C7FF;
+  --white: #F5F8FF;
+  --sunrise-gold: #FFD38A;
+  --flower-pink: #FF9EBD;
+
+  --font-heading: 'Playfair Display', Georgia, serif;
+  --font-body: 'Outfit', system-ui, sans-serif;
+  --font-arabic: 'Amiri', 'Noto Naskh Arabic', serif;
+
+  --glass-bg: rgba(11, 31, 70, 0.45);
+  --glass-border: rgba(138, 228, 255, 0.15);
+  --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+/* ── Reset & Base ── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: var(--font-body);
+  background: var(--midnight-blue);
+  color: var(--white);
+  line-height: 1.7;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  background: none;
+  font-family: inherit;
+  color: inherit;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* ── Typography ── */
+h1, h2, h3, h4 {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+/* ── Glass Card ── */
+.glass-card {
+  background: var(--glass-bg);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--glass-border);
+  border-radius: 20px;
+  box-shadow: var(--glass-shadow);
+}
+
+/* ── Section Base ── */
+.section {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 80px 24px;
+  overflow: hidden;
+}
+
+.section-short {
+  min-height: auto;
+  padding: 60px 24px;
+}
+
+.section-heading {
+  font-family: var(--font-heading);
+  font-size: clamp(1.5rem, 4vw, 2.5rem);
+  color: var(--cyan);
+  text-align: center;
+  margin-bottom: 48px;
+  letter-spacing: 0.02em;
+}
+
+.section-subheading {
+  font-family: var(--font-heading);
+  font-style: italic;
+  font-size: clamp(1rem, 2.5vw, 1.3rem);
+  color: var(--lavender);
+  text-align: center;
+  max-width: 600px;
+  margin: 0 auto 32px;
+  opacity: 0.9;
+}
+
+/* ── Buttons ── */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 32px;
+  font-size: 1rem;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  color: var(--midnight-blue);
+  background: linear-gradient(135deg, var(--cyan), var(--sky-blue));
+  border-radius: 50px;
+  box-shadow: 0 4px 20px rgba(138, 228, 255, 0.3);
+  transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(138, 228, 255, 0.4);
+}
+
+.btn-primary:active {
+  transform: translateY(0);
+}
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 28px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  color: var(--cyan);
+  border: 1px solid rgba(138, 228, 255, 0.3);
+  border-radius: 50px;
+  background: rgba(138, 228, 255, 0.08);
+  transition: all 0.3s ease;
+}
+
+.btn-secondary:hover {
+  background: rgba(138, 228, 255, 0.15);
+  border-color: rgba(138, 228, 255, 0.5);
+  transform: translateY(-2px);
+}
+
+/* ── Stars Canvas Background ── */
+.stars-bg {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.star {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background: var(--white);
+  border-radius: 50%;
+  animation: twinkle var(--duration, 3s) ease-in-out infinite;
+  animation-delay: var(--delay, 0s);
+  opacity: 0;
+}
+
+.star--large {
+  width: 3px;
+  height: 3px;
+  box-shadow: 0 0 6px 1px rgba(138, 228, 255, 0.4);
+}
+
+@keyframes twinkle {
+  0%, 100% { opacity: 0.2; }
+  50% { opacity: 1; }
+}
+
+/* ── Floating Particles ── */
+.particle {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  animation: floatUp var(--duration, 8s) ease-in-out infinite;
+  animation-delay: var(--delay, 0s);
+}
+
+@keyframes floatUp {
+  0% { transform: translateY(0) translateX(0) scale(1); opacity: 0; }
+  20% { opacity: 0.6; }
+  80% { opacity: 0.3; }
+  100% { transform: translateY(-100vh) translateX(30px) scale(0.5); opacity: 0; }
+}
+
+/* ── Petal Animation ── */
+.petal {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  background: var(--flower-pink);
+  border-radius: 50% 0 50% 50%;
+  opacity: 0;
+  pointer-events: none;
+  animation: petalFall var(--duration, 10s) ease-in-out infinite;
+  animation-delay: var(--delay, 0s);
+}
+
+@keyframes petalFall {
+  0% { transform: translateY(-20px) translateX(0) rotate(0deg); opacity: 0; }
+  10% { opacity: 0.7; }
+  90% { opacity: 0.3; }
+  100% { transform: translateY(100vh) translateX(80px) rotate(360deg); opacity: 0; }
+}
+
+/* ── Shooting Star ── */
+.shooting-star {
+  position: absolute;
+  width: 80px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--cyan), var(--white));
+  border-radius: 2px;
+  opacity: 0;
+  pointer-events: none;
+  animation: shoot var(--duration, 3s) ease-out infinite;
+  animation-delay: var(--delay, 0s);
+}
+
+@keyframes shoot {
+  0% { transform: translateX(0) translateY(0) rotate(-35deg); opacity: 0; }
+  5% { opacity: 1; }
+  15% { opacity: 0; }
+  100% { transform: translateX(300px) translateY(200px) rotate(-35deg); opacity: 0; }
+}
+
+/* ── Cloud ── */
+.cloud {
+  position: absolute;
+  background: rgba(200, 199, 255, 0.06);
+  border-radius: 50%;
+  filter: blur(40px);
+  pointer-events: none;
+  animation: cloudDrift var(--duration, 60s) linear infinite;
+}
+
+@keyframes cloudDrift {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(50px); }
+}
+
+/* ── Countdown Cards ── */
+.countdown-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  max-width: 600px;
+  width: 100%;
+  margin: 32px auto;
+}
+
+.countdown-unit {
+  text-align: center;
+  padding: 24px 12px;
+}
+
+.countdown-number {
+  font-family: var(--font-heading);
+  font-size: clamp(2rem, 6vw, 3.5rem);
+  font-weight: 700;
+  background: linear-gradient(180deg, var(--cyan), var(--sky-blue));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  line-height: 1;
+  margin-bottom: 4px;
+  text-shadow: none;
+}
+
+.countdown-label {
+  font-size: clamp(0.65rem, 1.5vw, 0.85rem);
+  color: var(--lavender);
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  font-weight: 400;
+}
+
+/* ── Arabic Text ── */
+.arabic-text {
+  font-family: var(--font-arabic);
+  direction: rtl;
+  text-align: center;
+  font-size: clamp(1.5rem, 4vw, 2.2rem);
+  line-height: 2;
+  color: var(--sunrise-gold);
+  margin-bottom: 16px;
+}
+
+.arabic-translation {
+  font-family: var(--font-heading);
+  font-style: italic;
+  font-size: clamp(0.95rem, 2vw, 1.15rem);
+  color: var(--lavender);
+  text-align: center;
+  margin-bottom: 8px;
+}
+
+.arabic-reference {
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  color: rgba(200, 199, 255, 0.6);
+  text-align: center;
+  letter-spacing: 0.05em;
+}
+
+/* ── Verse Cards ── */
+.verse-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+  gap: 24px;
+  max-width: 1060px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.verse-card {
+  padding: 40px 28px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.verse-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, var(--sunrise-gold), transparent);
+  border-radius: 2px;
+}
+
+/* ── Image Section ── */
+.landscape-image {
+  width: 100%;
+  max-width: 1000px;
+  border-radius: 16px;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+  margin: 24px auto;
+}
+
+/* ── Message Card ── */
+.message-card {
+  max-width: 700px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 48px 36px;
+  text-align: center;
+}
+
+.message-card p {
+  font-size: clamp(0.95rem, 2vw, 1.1rem);
+  line-height: 1.9;
+  color: rgba(245, 248, 255, 0.85);
+  margin-bottom: 16px;
+}
+
+/* ── Back to Top ── */
+.back-to-top {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(16, 44, 91, 0.8);
+  backdrop-filter: blur(8px);
+  border: 1px solid var(--glass-border);
+  color: var(--cyan);
+  font-size: 1.2rem;
+  z-index: 100;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.3);
+}
+
+.back-to-top:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 24px rgba(138, 228, 255, 0.2);
+}
+
+/* ── Hidden Star ── */
+.hidden-star-btn {
+  position: relative;
+  width: 20px;
+  height: 20px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  z-index: 10;
+}
+
+.hidden-star-glow {
+  width: 20px;
+  height: 20px;
+  background: radial-gradient(circle, var(--sunrise-gold) 0%, transparent 70%);
+  border-radius: 50%;
+  animation: starPulse 3s ease-in-out infinite;
+}
+
+@keyframes starPulse {
+  0%, 100% { opacity: 0.3; transform: scale(0.8); }
+  50% { opacity: 0.7; transform: scale(1.2); }
+}
+
+/* ── Wish Card ── */
+.wish-display {
+  min-height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 32px;
+  margin: 24px auto;
+  max-width: 550px;
+  width: 100%;
+}
+
+/* ── Sunrise Section BG ── */
+.sunrise-bg {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(
+    180deg,
+    var(--midnight-blue) 0%,
+    var(--deep-navy) 20%,
+    #1a2a5e 40%,
+    #3a4a8e 55%,
+    #c68a5e 70%,
+    #f0a860 80%,
+    var(--sunrise-gold) 90%,
+    #FFE8B8 100%
+  );
+}
+
+/* ── Cosmic Galaxy Universe Background ── */
+.galaxy-universe-container {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+  background: #040B1A;
+}
+
+.cosmic-dust-glow {
+  animation: cosmicBreathe 14s ease-in-out infinite alternate;
+}
+
+@keyframes cosmicBreathe {
+  0% {
+    opacity: 0.7;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.95;
+    transform: scale(1.04);
+  }
+  100% {
+    opacity: 0.7;
+    transform: scale(1);
+  }
+}
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  .section {
+    padding: 60px 16px;
+  }
+
+  .countdown-container {
+    gap: 10px;
+  }
+
+  .countdown-unit {
+    padding: 16px 8px;
+  }
+
+  .message-card {
+    padding: 32px 20px;
+  }
+
+  .verse-cards-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .verse-card {
+    padding: 32px 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .countdown-container {
+    grid-template-columns: repeat(2, 1fr);
+    max-width: 280px;
+  }
+}
+
+/* ── Reduced Motion ── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+/* ── Dawn Simulator Range Slider ── */
+#dawn-simulator-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: #FFD38A;
+  cursor: pointer;
+  box-shadow: 0 0 12px 3px rgba(255, 211, 138, 0.7), 0 2px 6px rgba(0, 0, 0, 0.4);
+  border: 2px solid #FFFFFF;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+#dawn-simulator-slider::-webkit-slider-thumb:hover {
+  transform: scale(1.18);
+  box-shadow: 0 0 18px 5px rgba(255, 211, 138, 0.9), 0 2px 8px rgba(0, 0, 0, 0.5);
+}
+
+#dawn-simulator-slider::-moz-range-thumb {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: #FFD38A;
+  cursor: pointer;
+  box-shadow: 0 0 12px 3px rgba(255, 211, 138, 0.7), 0 2px 6px rgba(0, 0, 0, 0.4);
+  border: 2px solid #FFFFFF;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+/* ── Music Equalizer Bars ── */
+.eq-bar {
+  display: inline-block;
+  width: 3px;
+  background: var(--sunrise-gold);
+  border-radius: 2px;
+  animation: eqBounce 0.8s ease-in-out infinite alternate;
+}
+.eq-bar-1 { height: 6px; animation-delay: 0.1s; }
+.eq-bar-2 { height: 12px; animation-delay: 0.3s; }
+.eq-bar-3 { height: 8px; animation-delay: 0.2s; }
+
+@keyframes eqBounce {
+  0% { transform: scaleY(0.4); }
+  100% { transform: scaleY(1.2); }
+}
