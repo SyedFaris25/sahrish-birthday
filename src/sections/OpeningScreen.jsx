@@ -66,9 +66,9 @@ export default function OpeningScreen({ onEnter }) {
 
           {/* Interactive Birthday Cake SVG */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 0.3 }}
+            transition={{ duration: 0.6 }}
             style={{ marginBottom: '24px', position: 'relative', zIndex: 2 }}
           >
             <div style={{ position: 'relative', display: 'inline-block' }}>
@@ -146,7 +146,7 @@ export default function OpeningScreen({ onEnter }) {
             <p style={{
               fontSize: '0.8rem',
               color: allCandlesBlown ? 'var(--sunrise-gold)' : 'var(--lavender)',
-              opacity: 0.85,
+              opacity: 0.9,
               marginTop: '4px',
               fontWeight: 500,
             }}>
@@ -156,9 +156,9 @@ export default function OpeningScreen({ onEnter }) {
 
           {/* Pre-heading */}
           <motion.p
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.6 }}
+            transition={{ duration: 0.6, delay: 0.1 }}
             style={{
               fontFamily: 'var(--font-body)',
               fontSize: 'clamp(0.75rem, 2vw, 0.9rem)',
@@ -175,13 +175,14 @@ export default function OpeningScreen({ onEnter }) {
 
           {/* HAPPY BIRTHDAY */}
           <motion.h1
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 0.9 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
             style={{
               fontFamily: 'var(--font-heading)',
               fontSize: 'clamp(2rem, 7vw, 4rem)',
               fontWeight: 700,
+              color: 'var(--cyan)',
               background: 'linear-gradient(135deg, var(--cyan), var(--lavender), var(--flower-pink))',
               WebkitBackgroundClip: 'text',
               WebkitTextFillColor: 'transparent',
@@ -197,9 +198,9 @@ export default function OpeningScreen({ onEnter }) {
 
           {/* SAHRISH BANU */}
           <motion.h2
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 1.2 }}
+            transition={{ duration: 0.6, delay: 0.3 }}
             style={{
               fontFamily: 'var(--font-heading)',
               fontSize: 'clamp(1.6rem, 5vw, 3rem)',
@@ -216,9 +217,9 @@ export default function OpeningScreen({ onEnter }) {
 
           {/* Tagline */}
           <motion.p
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 1.5 }}
+            transition={{ duration: 0.6, delay: 0.4 }}
             style={{
               fontFamily: 'var(--font-heading)',
               fontStyle: 'italic',
@@ -226,7 +227,7 @@ export default function OpeningScreen({ onEnter }) {
               color: 'var(--lavender)',
               maxWidth: '500px',
               marginBottom: '40px',
-              opacity: 0.9,
+              opacity: 0.95,
               position: 'relative',
               zIndex: 2,
             }}
@@ -237,9 +238,9 @@ export default function OpeningScreen({ onEnter }) {
           {/* Button */}
           <motion.button
             id="open-surprise-btn"
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 1.8 }}
+            transition={{ duration: 0.6, delay: 0.5 }}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.97 }}
             onClick={handleClick}
@@ -252,5 +253,6 @@ export default function OpeningScreen({ onEnter }) {
         </motion.div>
       )}
     </AnimatePresence>
+
   );
 }
